@@ -18,3 +18,5 @@ services:
         volumes:
             - ./mysql:/var/lib/mysql
             - ./backups:/backups
+            - ./init.sql:/docker-entrypoint-initdb.d/a.sql
+            - ./maze.sql:/docker-entrypoint-initdb.d/b.sql
