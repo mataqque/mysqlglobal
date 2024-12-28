@@ -1,54 +1,4 @@
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
--- MySQL dump 10.13  Distrib 8.3.0, for Linux (x86_64)
---
--- Host: localhost    Database: maze
--- ------------------------------------------------------
--- Server version	8.3.0
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `admin_permissions`
---
-
-DROP TABLE IF EXISTS `admin_permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `admin_permissions` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `action` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `subject` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `conditions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `created_at` datetime(6) DEFAULT NULL,
-  `updated_at` datetime(6) DEFAULT NULL,
-  `created_by_id` int unsigned DEFAULT NULL,
-  `updated_by_id` int unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `admin_permissions_created_by_id_fk` (`created_by_id`),
-  KEY `admin_permissions_updated_by_id_fk` (`updated_by_id`),
-  CONSTRAINT `admin_permissions_created_by_id_fk` FOREIGN KEY (`created_by_id`) REFERENCES `admin_users` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `admin_permissions_updated_by_id_fk` FOREIGN KEY (`updated_by_id`) REFERENCES `admin_users` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `admin_permissions_chk_1` CHECK (json_valid(`properties`)),
-  CONSTRAINT `admin_permissions_chk_2` CHECK (json_valid(`conditions`))
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `admin_permissions`
---
-
-LOCK TABLES `admin_permissions` WRITE;
-/*!40000 ALTER TABLE `admin_permissions` DISABLE KEYS */;
+use maze;
 INSERT INTO `admin_permissions` VALUES (1,'plugin::upload.read',NULL,'{}','[]','2023-08-23 18:07:42.608000','2023-08-23 18:07:42.608000',NULL,NULL),(2,'plugin::upload.configure-view',NULL,'{}','[]','2023-08-23 18:07:42.613000','2023-08-23 18:07:42.613000',NULL,NULL),(3,'plugin::upload.assets.create',NULL,'{}','[]','2023-08-23 18:07:42.654000','2023-08-23 18:07:42.654000',NULL,NULL),(4,'plugin::upload.assets.update',NULL,'{}','[]','2023-08-23 18:07:42.659000','2023-08-23 18:07:42.659000',NULL,NULL),(5,'plugin::upload.assets.download',NULL,'{}','[]','2023-08-23 18:07:42.663000','2023-08-23 18:07:42.663000',NULL,NULL),(6,'plugin::upload.assets.copy-link',NULL,'{}','[]','2023-08-23 18:07:42.667000','2023-08-23 18:07:42.667000',NULL,NULL),(7,'plugin::upload.read',NULL,'{}','[\"admin::is-creator\"]','2023-08-23 18:07:42.672000','2023-08-23 18:07:42.672000',NULL,NULL),(8,'plugin::upload.configure-view',NULL,'{}','[]','2023-08-23 18:07:42.677000','2023-08-23 18:07:42.677000',NULL,NULL),(9,'plugin::upload.assets.create',NULL,'{}','[]','2023-08-23 18:07:42.681000','2023-08-23 18:07:42.681000',NULL,NULL),(10,'plugin::upload.assets.update',NULL,'{}','[\"admin::is-creator\"]','2023-08-23 18:07:42.728000','2023-08-23 18:07:42.728000',NULL,NULL),(11,'plugin::upload.assets.download',NULL,'{}','[]','2023-08-23 18:07:42.897000','2023-08-23 18:07:42.897000',NULL,NULL),(12,'plugin::upload.assets.copy-link',NULL,'{}','[]','2023-08-23 18:07:42.900000','2023-08-23 18:07:42.900000',NULL,NULL),(16,'plugin::content-manager.explorer.delete','plugin::users-permissions.user','{}','[]','2023-08-23 18:07:42.982000','2023-08-23 18:07:42.982000',NULL,NULL),(17,'plugin::content-manager.single-types.configure-view',NULL,'{}','[]','2023-08-23 18:07:42.988000','2023-08-23 18:07:42.988000',NULL,NULL),(18,'plugin::content-manager.collection-types.configure-view',NULL,'{}','[]','2023-08-23 18:07:42.991000','2023-08-23 18:07:42.991000',NULL,NULL),(19,'plugin::content-manager.components.configure-layout',NULL,'{}','[]','2023-08-23 18:07:42.994000','2023-08-23 18:07:42.994000',NULL,NULL),(20,'plugin::content-type-builder.read',NULL,'{}','[]','2023-08-23 18:07:43.038000','2023-08-23 18:07:43.038000',NULL,NULL),(21,'plugin::email.settings.read',NULL,'{}','[]','2023-08-23 18:07:43.041000','2023-08-23 18:07:43.041000',NULL,NULL),(22,'plugin::upload.read',NULL,'{}','[]','2023-08-23 18:07:43.044000','2023-08-23 18:07:43.044000',NULL,NULL),(23,'plugin::upload.assets.create',NULL,'{}','[]','2023-08-23 18:07:43.048000','2023-08-23 18:07:43.048000',NULL,NULL),(24,'plugin::upload.assets.update',NULL,'{}','[]','2023-08-23 18:07:43.051000','2023-08-23 18:07:43.051000',NULL,NULL),(25,'plugin::upload.assets.download',NULL,'{}','[]','2023-08-23 18:07:43.058000','2023-08-23 18:07:43.058000',NULL,NULL),(26,'plugin::upload.assets.copy-link',NULL,'{}','[]','2023-08-23 18:07:43.061000','2023-08-23 18:07:43.061000',NULL,NULL),(27,'plugin::upload.configure-view',NULL,'{}','[]','2023-08-23 18:07:43.064000','2023-08-23 18:07:43.064000',NULL,NULL),(28,'plugin::upload.settings.read',NULL,'{}','[]','2023-08-23 18:07:43.110000','2023-08-23 18:07:43.110000',NULL,NULL),(29,'plugin::users-permissions.roles.create',NULL,'{}','[]','2023-08-23 18:07:43.114000','2023-08-23 18:07:43.114000',NULL,NULL),(30,'plugin::users-permissions.roles.read',NULL,'{}','[]','2023-08-23 18:07:43.117000','2023-08-23 18:07:43.117000',NULL,NULL),(31,'plugin::users-permissions.roles.update',NULL,'{}','[]','2023-08-23 18:07:43.121000','2023-08-23 18:07:43.121000',NULL,NULL),(32,'plugin::users-permissions.roles.delete',NULL,'{}','[]','2023-08-23 18:07:43.124000','2023-08-23 18:07:43.124000',NULL,NULL),(33,'plugin::users-permissions.providers.read',NULL,'{}','[]','2023-08-23 18:07:43.127000','2023-08-23 18:07:43.127000',NULL,NULL),(34,'plugin::users-permissions.providers.update',NULL,'{}','[]','2023-08-23 18:07:43.130000','2023-08-23 18:07:43.130000',NULL,NULL),(35,'plugin::users-permissions.email-templates.read',NULL,'{}','[]','2023-08-23 18:07:43.170000','2023-08-23 18:07:43.170000',NULL,NULL),(36,'plugin::users-permissions.email-templates.update',NULL,'{}','[]','2023-08-23 18:07:43.174000','2023-08-23 18:07:43.174000',NULL,NULL),(37,'plugin::users-permissions.advanced-settings.read',NULL,'{}','[]','2023-08-23 18:07:43.178000','2023-08-23 18:07:43.178000',NULL,NULL),(38,'plugin::users-permissions.advanced-settings.update',NULL,'{}','[]','2023-08-23 18:07:43.181000','2023-08-23 18:07:43.181000',NULL,NULL),(39,'plugin::i18n.locale.create',NULL,'{}','[]','2023-08-23 18:07:43.185000','2023-08-23 18:07:43.185000',NULL,NULL),(40,'plugin::i18n.locale.read',NULL,'{}','[]','2023-08-23 18:07:43.188000','2023-08-23 18:07:43.188000',NULL,NULL),(41,'plugin::i18n.locale.update',NULL,'{}','[]','2023-08-23 18:07:43.192000','2023-08-23 18:07:43.192000',NULL,NULL),(42,'plugin::i18n.locale.delete',NULL,'{}','[]','2023-08-23 18:07:43.195000','2023-08-23 18:07:43.195000',NULL,NULL),(43,'admin::marketplace.read',NULL,'{}','[]','2023-08-23 18:07:43.242000','2023-08-23 18:07:43.242000',NULL,NULL),(44,'admin::webhooks.create',NULL,'{}','[]','2023-08-23 18:07:43.245000','2023-08-23 18:07:43.245000',NULL,NULL),(45,'admin::webhooks.read',NULL,'{}','[]','2023-08-23 18:07:43.249000','2023-08-23 18:07:43.249000',NULL,NULL),(46,'admin::webhooks.update',NULL,'{}','[]','2023-08-23 18:07:43.252000','2023-08-23 18:07:43.252000',NULL,NULL),(47,'admin::webhooks.delete',NULL,'{}','[]','2023-08-23 18:07:43.255000','2023-08-23 18:07:43.255000',NULL,NULL),(48,'admin::users.create',NULL,'{}','[]','2023-08-23 18:07:43.258000','2023-08-23 18:07:43.258000',NULL,NULL),(49,'admin::users.read',NULL,'{}','[]','2023-08-23 18:07:43.261000','2023-08-23 18:07:43.261000',NULL,NULL),(50,'admin::users.update',NULL,'{}','[]','2023-08-23 18:07:43.264000','2023-08-23 18:07:43.264000',NULL,NULL),(51,'admin::users.delete',NULL,'{}','[]','2023-08-23 18:07:43.308000','2023-08-23 18:07:43.308000',NULL,NULL),(52,'admin::roles.create',NULL,'{}','[]','2023-08-23 18:07:43.312000','2023-08-23 18:07:43.312000',NULL,NULL),(53,'admin::roles.read',NULL,'{}','[]','2023-08-23 18:07:43.316000','2023-08-23 18:07:43.316000',NULL,NULL),(54,'admin::roles.update',NULL,'{}','[]','2023-08-23 18:07:43.320000','2023-08-23 18:07:43.320000',NULL,NULL),(55,'admin::roles.delete',NULL,'{}','[]','2023-08-23 18:07:43.325000','2023-08-23 18:07:43.325000',NULL,NULL),(56,'admin::api-tokens.access',NULL,'{}','[]','2023-08-23 18:07:43.329000','2023-08-23 18:07:43.329000',NULL,NULL),(57,'admin::api-tokens.create',NULL,'{}','[]','2023-08-23 18:07:43.332000','2023-08-23 18:07:43.332000',NULL,NULL),(58,'admin::api-tokens.read',NULL,'{}','[]','2023-08-23 18:07:43.335000','2023-08-23 18:07:43.335000',NULL,NULL),(59,'admin::api-tokens.update',NULL,'{}','[]','2023-08-23 18:07:43.376000','2023-08-23 18:07:43.376000',NULL,NULL),(60,'admin::api-tokens.regenerate',NULL,'{}','[]','2023-08-23 18:07:43.380000','2023-08-23 18:07:43.380000',NULL,NULL),(61,'admin::api-tokens.delete',NULL,'{}','[]','2023-08-23 18:07:43.383000','2023-08-23 18:07:43.383000',NULL,NULL),(62,'admin::project-settings.update',NULL,'{}','[]','2023-08-23 18:07:43.387000','2023-08-23 18:07:43.387000',NULL,NULL),(63,'admin::project-settings.read',NULL,'{}','[]','2023-08-23 18:07:43.390000','2023-08-23 18:07:43.390000',NULL,NULL),(64,'admin::transfer.tokens.access',NULL,'{}','[]','2023-08-23 18:07:43.393000','2023-08-23 18:07:43.393000',NULL,NULL),(65,'admin::transfer.tokens.create',NULL,'{}','[]','2023-08-23 18:07:43.396000','2023-08-23 18:07:43.396000',NULL,NULL),(66,'admin::transfer.tokens.read',NULL,'{}','[]','2023-08-23 18:07:43.399000','2023-08-23 18:07:43.399000',NULL,NULL),(67,'admin::transfer.tokens.update',NULL,'{}','[]','2023-08-23 18:07:43.445000','2023-08-23 18:07:43.445000',NULL,NULL),(68,'admin::transfer.tokens.regenerate',NULL,'{}','[]','2023-08-23 18:07:43.448000','2023-08-23 18:07:43.448000',NULL,NULL),(69,'admin::transfer.tokens.delete',NULL,'{}','[]','2023-08-23 18:07:43.451000','2023-08-23 18:07:43.451000',NULL,NULL),(73,'plugin::content-manager.explorer.delete','api::sentence.sentence','{}','[]','2023-08-23 18:10:02.465000','2023-08-23 18:10:02.465000',NULL,NULL),(74,'plugin::content-manager.explorer.publish','api::sentence.sentence','{}','[]','2023-08-23 18:10:02.469000','2023-08-23 18:10:02.469000',NULL,NULL),(75,'plugin::content-manager.explorer.create','api::sentence.sentence','{\"fields\":[\"english\",\"spanish\",\"userphone\"]}','[]','2023-08-24 23:37:48.727000','2023-08-24 23:37:48.727000',NULL,NULL),(77,'plugin::content-manager.explorer.read','api::sentence.sentence','{\"fields\":[\"english\",\"spanish\",\"userphone\"]}','[]','2023-08-24 23:37:48.738000','2023-08-24 23:37:48.738000',NULL,NULL),(79,'plugin::content-manager.explorer.update','api::sentence.sentence','{\"fields\":[\"english\",\"spanish\",\"userphone\"]}','[]','2023-08-24 23:37:48.745000','2023-08-24 23:37:48.745000',NULL,NULL),(84,'plugin::content-manager.explorer.create','plugin::users-permissions.user','{\"fields\":[\"username\",\"email\",\"provider\",\"password\",\"resetPasswordToken\",\"confirmationToken\",\"confirmed\",\"blocked\",\"role\",\"sentences\",\"cel\",\"interval\"]}','[]','2023-08-27 17:13:41.316000','2023-08-27 17:13:41.316000',NULL,NULL),(85,'plugin::content-manager.explorer.read','plugin::users-permissions.user','{\"fields\":[\"username\",\"email\",\"provider\",\"password\",\"resetPasswordToken\",\"confirmationToken\",\"confirmed\",\"blocked\",\"role\",\"sentences\",\"cel\",\"interval\"]}','[]','2023-08-27 17:13:41.321000','2023-08-27 17:13:41.321000',NULL,NULL),(86,'plugin::content-manager.explorer.update','plugin::users-permissions.user','{\"fields\":[\"username\",\"email\",\"provider\",\"password\",\"resetPasswordToken\",\"confirmationToken\",\"confirmed\",\"blocked\",\"role\",\"sentences\",\"cel\",\"interval\"]}','[]','2023-08-27 17:13:41.325000','2023-08-27 17:13:41.325000',NULL,NULL);
 /*!40000 ALTER TABLE `admin_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -160,6 +110,30 @@ INSERT INTO `admin_users` VALUES (1,'flavio','mataqque',NULL,'mataqque.100@gmail
 /*!40000 ALTER TABLE `admin_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+DROP TABLE IF EXISTS `admin_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admin_permissions` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `action` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `conditions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `created_at` datetime(6) DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  `created_by_id` int unsigned DEFAULT NULL,
+  `updated_by_id` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `admin_permissions_created_by_id_fk` (`created_by_id`),
+  KEY `admin_permissions_updated_by_id_fk` (`updated_by_id`),
+  CONSTRAINT `admin_permissions_created_by_id_fk` FOREIGN KEY (`created_by_id`) REFERENCES `admin_users` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `admin_permissions_updated_by_id_fk` FOREIGN KEY (`updated_by_id`) REFERENCES `admin_users` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `admin_permissions_chk_1` CHECK (json_valid(`properties`)),
+  CONSTRAINT `admin_permissions_chk_2` CHECK (json_valid(`conditions`))
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+LOCK TABLES `admin_permissions` WRITE;
 --
 -- Table structure for table `admin_users_roles_links`
 --
